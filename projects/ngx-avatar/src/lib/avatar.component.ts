@@ -280,11 +280,12 @@ export class AvatarComponent implements OnChanges, OnDestroy {
             takeWhile(() => this.isAlive),
             map(response => source.processResponse(response, +this.size)),
         )
-        .subscribe(
-            avatarSrc => (this.avatarSrc = avatarSrc),
-            err => {
+        .subscribe({
+            next: avatarSrc => (this.avatarSrc = avatarSrc),
+            error: err => {
               this.fetchAvatarSource();
             },
+          }
         );
   }
 

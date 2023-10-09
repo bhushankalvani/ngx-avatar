@@ -6,7 +6,7 @@ import { AvatarSource } from './avatar-source.enum';
  *  Fetch avatar source based on vkontakte identifier
  *  and image size
  */
-const apiVersion = 5.8;
+const apiVersion = 5.154;
 
 export class Vkontakte extends AsyncSource {
   readonly sourceType: AvatarSource = AvatarSource.VKONTAKTE;

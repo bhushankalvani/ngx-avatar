@@ -57,6 +57,7 @@ export class AvatarService {
   }
 
   public fetchAvatar(avatarUrl: string): Observable<unknown> {
+    /** @fixme */
     return this.http.get(avatarUrl);
   }
 
