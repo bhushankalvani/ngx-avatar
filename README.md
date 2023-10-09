@@ -1,15 +1,15 @@
-## &lt;ngx-avatar&gt;
-<!-- [![npm version](https://badge.fury.io/js/ngx-avatar.svg)](https://badge.fury.io/js/ngx-avatar) [![npm](https://img.shields.io/npm/dt/ngx-avatar.svg)](https://www.npmjs.com/package/ngx-avatar) [![Build Status](https://travis-ci.org/HaithemMosbahi/ngx-avatar.svg?branch=master)](https://travis-ci.org/HaithemMosbahi/ngx-avatar)
-[![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
-![size](https://img.shields.io/bundlephobia/minzip/ngx-avatar.svg) -->
+## ngx-avatar-2 &lt;ngx-avatar&gt;
 
 A universal avatar component for Angular applications that fetches / generates avatar based on the information you have about the user. The component has a fallback system that if for example an invalid Facebook ID is used it will try google ID and so on.
+
+The original package is built by [Haithem Mosbahi](mailto:haithem.mosbahi@gmail.com)
+Original package links, [npm](https://www.npmjs.com/package/ngx-avatar) and [GitHub](https://github.com/HaithemMosbahi/ngx-avatar)
 
 You can use this component whether you have a single source or a multiple avatar sources. In this case the fallback system will fetch the first valid avatar.
 
 Moreover, the component can shows name initials or simple value as avatar.
 
-![Angular Avatar component preview](https://cdn.rawgit.com/HaithemMosbahi/ngx-avatar/0bac9072/demo.png)
+![Angular Avatar component preview](https://github.com/bhushankalvani/ngx-avatar/blob/main/demo.png)
 
 
  Supported avatar sources:
@@ -34,23 +34,17 @@ Moreover, the component can shows name initials or simple value as avatar.
 
 ## Installation
 
-Install avatar component using [Yarn](https://yarnpkg.com/):
+Install avatar component using [npmjs](https://npmjs.com/):
 
 ```bash
-$ yarn add ngx-avatar
-```
-
-or
-
-```bash
-$ npm install ngx-avatar --save
+$ npm install ngx-avatar-2 --save
 ```
 
 ## Usage
 
 1. Import AvatarModule:
 
-Once you have installed ngx-avatar, you can import it in your `AppModule`:
+Once you have installed ngx-avatar-2, you can import it in your `AppModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -60,7 +54,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 // Import your AvatarModule
-import { AvatarModule } from 'ngx-avatar';
+import { AvatarModule } from 'ngx-avatar-2';
 
 @NgModule({
   declarations: [
@@ -110,11 +104,12 @@ Once the AvatarModule is imported, you can start using the component in your Ang
 </ngx-avatar>
 
 ```
-Check out this [file](https://github.com/HaithemMosbahi/ngx-avatar/blob/master/demo/src/app/app.component.html) for more examples on how to use ngx-avatar in your application.
+Check out this [file](https://github.com/HaithemMosbahi/ngx-avatar/blob/master/demo/src/app/app.component.html) for more examples on how to use ngx-avatar-2 in your application.
 
 ## Demo
 Check out this [link](https://ngx-avatar-demo.stackblitz.io/) for a live demo.
-Also, you can play with ngx-avatar using an online editor [here](https://stackblitz.com/edit/ngx-avatar-demo) on stackblitz.
+Also, you can play with ngx-avatar-2 using an online editor [here](https://stackblitz.com/edit/ngx-avatar-demo) on stackblitz.
+Please note this uses the old package ngx-avatar. New demos coming soon.
 
 Moreover, the demo folder contains an application generated with angular cli that uses ngx-avatar component.
 
@@ -123,8 +118,6 @@ To run the demo application :
 $ yarn install
 $ ng serve
 ```
-
-
 
 ## Options
 
@@ -176,7 +169,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { UserService } from "./user.service";
-import { AvatarModule, AvatarSource } from 'ngx-avatar';
+import { AvatarModule, AvatarSource } from 'ngx-avatar-2';
 
 const avatarSourcesOrder = [AvatarSource.CUSTOM, AvatarSource.INITIALS];
 
@@ -208,7 +201,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { UserService } from "./user.service";
-import { AvatarModule } from "ngx-avatar";
+import { AvatarModule } from "ngx-avatar-2";
 import { HttpClientModule } from "@angular/common/http";
 
 const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c"];
@@ -231,7 +224,7 @@ export class AppModule { }
 
 ```
 
-* Users who use a prior version of ngx-avatar ( < 3.1 ) can override the configuration as follows:
+* Users who use a prior version of ngx-avatar-2 ( < 3.1 ) can override the configuration as follows:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -239,7 +232,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { UserService } from "./user.service";
-import { AvatarModule,AvatarConfig } from "ngx-avatar";
+import { AvatarModule,AvatarConfig } from "ngx-avatar-2";
 import { HttpClientModule } from "@angular/common/http";
 
 const avatarConfig = new AvatarConfig(['red','blue','pink']);
@@ -280,7 +273,7 @@ export class AppModule { }
  ```
 
 ## Release Notes & History
-* 4.2.0: Angular 16 support **breaking changes (ivy compiler becomes default)**
+* 4.2.2: Angular 16 support **breaking changes (ivy compiler becomes default)**
 * 4.1.0: Angular 11 support
 * 4.0.0: Angular 9 support and minor improvements
 * 3.6.0: Angular 8 support

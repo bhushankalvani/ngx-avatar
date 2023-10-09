@@ -25,11 +25,11 @@
       "dom"
     ],
     "paths": {
-      "ngx-avatar": [
-        "dist/ngx-avatar"
+      "ngx-avatar-2": [
+        "dist/ngx-avatar-2"
       ],
-      "ngx-avatar/*": [
-        "dist/ngx-avatar/*"
+      "ngx-avatar-2/*": [
+        "dist/ngx-avatar-2/*"
       ]
     },
     "useDefineForClassFields": false

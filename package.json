@@ -3,7 +3,7 @@
   "version": "4.2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HaithemMosbahi/ngx-avatar"
+    "url": "https://github.com/bhushankalvani/ngx-avatar"
   },
   "scripts": {
     "ng": "ng",

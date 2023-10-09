@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
-import { Source } from '../../projects/ngx-avatar/src/lib/sources/source';
+import { Source } from '../../projects/ngx-avatar-2/src/lib/sources/source';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { Source } from '../../projects/ngx-avatar/src/lib/sources/source';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  userName = 'Haithem Mosbahi';
+  userName = 'Bhushan Kalvani';
   userFB = 'wrongId';
   customStyle = {
     backgroundColor: '#27ae60',

@@ -1,5 +1,5 @@
 {
-  "name": "ngx-avatar",
+  "name": "ngx-avatar-2",
   "description": "A universal avatar component for Angular applications that fetches / generates avatar based on the information you have about the user.",
   "version": "4.2.0",
   "keywords": [
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HaithemMosbahi/ngx-avatar"
+    "url": "https://github.com/bhushankalvani/ngx-avatar"
   },
   "sideEffects": false,
   "dependencies": {
