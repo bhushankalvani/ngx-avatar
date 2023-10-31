@@ -12,8 +12,7 @@ export class Facebook implements Source {
 
   public getAvatar(size: number): string {
     return (
-      'https://graph.facebook.com/' +
-      `${this.sourceId}/picture?width=${size}&height=${size}`
+      `https://graph.facebook.com/${this.sourceId}/picture?width=${size}&height=${size}`
     );
   }
 }

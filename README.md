@@ -274,6 +274,8 @@ export class AppModule { }
 
 ## Release Notes & History
 * 4.2.2: Angular 16 support **breaking changes (ivy compiler becomes default)**
+* 4.1.9: Angular 15 support
+* 4.1.8: Angular 14 support
 * 4.1.0: Angular 11 support
 * 4.0.0: Angular 9 support and minor improvements
 * 3.6.0: Angular 8 support

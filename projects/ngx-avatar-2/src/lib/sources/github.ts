@@ -14,6 +14,9 @@ export class Github extends AsyncSource {
 
   public getAvatar(): string {
     return `https://api.github.com/users/${this.sourceId}`;
+    /** @debug updates to v4 */
+    // https://avatars.githubusercontent.com/u/19436859?s=400&v=4
+    // https://github.com/npm.png?size=200
   }
 
   /**

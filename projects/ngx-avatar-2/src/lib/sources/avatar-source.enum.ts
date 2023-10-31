@@ -6,7 +6,7 @@ export enum AvatarSource {
   VKONTAKTE = 'vkontakte', /** @debug API version changed */
   SKYPE = 'skype', /** @debug API version changed */
   GRAVATAR = 'gravatar',
-  GITHUB = 'github',
+  GITHUB = 'github',  /** @debug API version changed */
   CUSTOM = 'custom',
   INITIALS = 'initials',
   VALUE = 'value'
