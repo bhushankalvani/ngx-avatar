@@ -1,6 +1,6 @@
 {
   "name": "ngx-avatar",
-  "version": "4.2.3",
+  "version": "5.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/bhushankalvani/ngx-avatar"
@@ -17,27 +17,27 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^17.3.0",
-    "@angular/common": "^17.3.0",
-    "@angular/compiler": "^17.3.0",
-    "@angular/core": "^17.3.0",
-    "@angular/forms": "^17.3.0",
-    "@angular/platform-browser": "^17.3.0",
-    "@angular/platform-browser-dynamic": "^17.3.0",
-    "@angular/router": "^17.3.0",
+    "@angular/animations": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/compiler": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "@angular/platform-browser-dynamic": "^18.0.0",
+    "@angular/router": "^18.0.0",
     "rxjs": "^7.8.0",
     "zone.js": "~0.14.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.3.0",
-    "@angular-eslint/builder": "17.5.3",
-    "@angular-eslint/eslint-plugin": "17.5.3",
-    "@angular-eslint/eslint-plugin-template": "17.5.3",
-    "@angular-eslint/schematics": "17.5.3",
-    "@angular-eslint/template-parser": "17.5.3",
-    "@angular/cli": "^17.3.0",
-    "@angular/compiler-cli": "^17.3.0",
-    "@angular/language-service": "^17.3.0",
+    "@angular-devkit/build-angular": "^18.0.0",
+    "@angular-eslint/builder": "18.3.0",
+    "@angular-eslint/eslint-plugin": "18.3.0",
+    "@angular-eslint/eslint-plugin-template": "18.3.0",
+    "@angular-eslint/schematics": "18.3.0",
+    "@angular-eslint/template-parser": "18.3.0",
+    "@angular/cli": "^18.0.0",
+    "@angular/compiler-cli": "^18.0.0",
+    "@angular/language-service": "^18.0.0",
     "@types/jasmine": "^5.1.0",
     "@types/jasminewd2": "^2.0.11",
     "@types/node": "^20.8.3",
@@ -52,8 +52,8 @@
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
     "karma-mocha-reporter": "^2.2.5",
-    "ng-packagr": "^17.3.0",
+    "ng-packagr": "^18.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "~5.2.0"
+    "typescript": "~5.4.0"
   }
 }
