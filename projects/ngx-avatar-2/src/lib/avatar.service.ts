@@ -16,7 +16,6 @@ export const defaultSources = [
   AvatarSource.TWITTER,
   AvatarSource.INSTAGRAM,
   AvatarSource.VKONTAKTE,
-  AvatarSource.SKYPE,
   AvatarSource.GRAVATAR,
   AvatarSource.GITHUB,
   AvatarSource.CUSTOM,

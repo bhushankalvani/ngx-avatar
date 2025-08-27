@@ -3,18 +3,17 @@
   <h2>Avatar from different sources</h2>
 <ngx-avatar (clickOnAvatar)="avatarClicked($event)" facebookId="1508319875" size="70"></ngx-avatar>
 <ngx-avatar googleId="103055244388830425867" [round]="false" size="70"></ngx-avatar>
-<ngx-avatar twitterId="StevenWilsonHQ" size="70"></ngx-avatar>
+<ngx-avatar twitterId="bhushan_kalvani" size="70"></ngx-avatar>
 <ngx-avatar vkontakteId="210700286" [round]="false" size="70"></ngx-avatar>
 <ngx-avatar githubId="sweko" size="70"></ngx-avatar>
 <ngx-avatar instagramId="dccomics" size="70"></ngx-avatar>
 
 <!-- use facebook as avatar source, if it fails, it will use twitter -->
-<ngx-avatar facebookId="15349439434" twitterId="StevenWilsonHQ" size="70"></ngx-avatar>
-<ngx-avatar skypeId="echo" size="70"></ngx-avatar>
-<ngx-avatar gravatarId="elmosbahihaithem@gmail.com" size="70"></ngx-avatar>
+<ngx-avatar facebookId="15349439434" twitterId="bhushan_kalvani" size="70"></ngx-avatar>
+<ngx-avatar gravatarId="hellom@gmail.com" size="70"></ngx-avatar>
 <ngx-avatar gravatarId="adde9b2b981a8083cf084c63ad86f753" size="70"></ngx-avatar>
 <!-- use gravatar as source, if it fails, it will use a fallback image -->
-<ngx-avatar gravatarId="adde9b2b981a8083cf084c63aQDQSDQSDd86f753" src="assets/img/avatar.jpg" size="70"></ngx-avatar>
+<ngx-avatar gravatarId="fd05dbe73d9aef2e2ae8910f08c512d301a610c6018da05ab5b78ff73ccbdffc" src="assets/img/avatar.jpg" size="70"></ngx-avatar>
 
 <br>
   <h2>Avatar with fallback</h2>
@@ -34,7 +33,7 @@
 <ngx-avatar size="50" name="John Doe"></ngx-avatar>
 <ngx-avatar size="50" name="Maikeal Akerfekdt"></ngx-avatar>
 <ngx-avatar size="50" name="Hubert Wolfeschlegelsteinhausenbergerdorff"></ngx-avatar>
-<ngx-avatar size="50" name="Haithem Mosbahi"></ngx-avatar>
+<ngx-avatar size="50" name="Bhushan Kalvani"></ngx-avatar>
 
 <br><br>
 <ngx-avatar size="40" value="75%"></ngx-avatar>
@@ -42,7 +41,23 @@
 <ngx-avatar size="40" value="1"></ngx-avatar>
 <ngx-avatar size="40" borderColor="#000" [round]="false" value="10"></ngx-avatar>
 
-<h2>Asynchrounous Avatars</h2>
+<h2>Accessibility Features</h2>
+
+<!-- Custom alt text and ARIA labels -->
+<ngx-avatar name="John Doe" size="70" alt="Profile picture of John Doe" ariaLabel="John Doe's avatar"></ngx-avatar>
+<ngx-avatar value="CEO" size="70" alt="CEO badge" ariaLabel="Chief Executive Officer badge"></ngx-avatar>
+
+<!-- Clickable avatars with keyboard navigation -->
+<ngx-avatar name="Jane Smith" size="70" [clickable]="true" (clickOnAvatar)="avatarClicked($event)" 
+           ariaLabel="Jane Smith's avatar, clickable"></ngx-avatar>
+<ngx-avatar gravatarId="hellom@gmail.com" size="70" [clickable]="true" (clickOnAvatar)="avatarClicked($event)"
+           alt="User profile from Gravatar"></ngx-avatar>
+
+<!-- Custom role attributes -->
+<ngx-avatar name="Admin" size="70" role="button" [clickable]="true" (clickOnAvatar)="avatarClicked($event)"
+           ariaLabel="Admin user, click to view profile"></ngx-avatar>
+
+<h2>Asynchronous Avatars</h2>
 
 <ngx-avatar [style]="customStyle" size="100" [name]="userName" [facebookId]="userFB" ></ngx-avatar>
 

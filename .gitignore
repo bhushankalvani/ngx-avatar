@@ -14,3 +14,5 @@ typings
 /dist
 .DS_Store
 src/.DS_Store
+.nx/cache
+.nx/workspace-data

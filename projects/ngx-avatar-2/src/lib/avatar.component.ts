@@ -5,8 +5,12 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  inject
 } from '@angular/core';
+import { NgStyle } from '@angular/common';
 
 import { Source } from './sources/source';
 import { AsyncSource } from './sources/async-source';
@@ -27,36 +31,58 @@ type Style = Partial<CSSStyleDeclaration>;
  */
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'ngx-avatar',
+  standalone: true,
+  imports: [NgStyle],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
-      :host {
+     :host {
         border-radius: 50%;
       }
+      
+      // :host {
+      //   border-radius: 50%;
+      //   display: inline-block;
+      // }
+      
+      // .avatar-container {
+      //   outline: none;
+      // }
     `
   ],
   template: `
     <div
       (click)="onAvatarClicked()"
+      (keydown)="onKeyDown($event)"
       class="avatar-container"
       [ngStyle]="hostStyle"
+      [attr.role]="role"
+      [attr.aria-label]="getAriaLabel()"
+      [attr.tabindex]="clickable ? '0' : null"
+      [class.clickable]="clickable"
     >
-      <img
-        *ngIf="avatarSrc; else textAvatar"
-        [src]="avatarSrc"
-        [width]="size"
-        [height]="size"
-        [ngStyle]="avatarStyle"
-        (error)="fetchAvatarSource()"
-        class="avatar-content"
-        loading="lazy"
-      />
-      <ng-template #textAvatar>
-        <div *ngIf="avatarText" class="avatar-content" [ngStyle]="avatarStyle">
+      @if (avatarSrc) {
+        <img
+          [src]="avatarSrc"
+          [alt]="getAltText()"
+          [width]="size"
+          [height]="size"
+          [ngStyle]="avatarStyle"
+          (error)="fetchAvatarSource()"
+          class="avatar-content"
+          loading="lazy"
+          [attr.aria-hidden]="role === 'img' ? null : 'true'"
+        />
+      } @else if (avatarText) {
+        <div 
+          class="avatar-content" 
+          [ngStyle]="avatarStyle"
+          [attr.aria-label]="getAriaLabel()"
+        >
           {{ avatarText }}
         </div>
-      </ng-template>
+      }
     </div>
   `
 })
@@ -77,24 +103,43 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   public style: Style = {};
   @Input()
   public cornerRadius: string | number = 0;
+
+  // Accessibility inputs
+  @Input()
+  public alt?: string;
+  @Input()
+  public ariaLabel?: string;
+  @Input()
+  public role: string = 'img';
+  @Input()
+  public clickable: boolean = false;
+  
+  // Avatar source inputs - aliases needed for backward compatibility
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('facebookId')
   public facebook?: string | null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('twitterId')
   public twitter?: string | null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('googleId')
   public google?: string | null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('instagramId')
   public instagram?: string | null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('vkontakteId')
   public vkontakte?: string | null;
-  @Input('skypeId')
-  public skype?: string | null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('gravatarId')
   public gravatar?: string | null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('githubId')
   public github?: string | null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('src')
   public custom?: string | null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('name')
   public initials?: string | null;
   @Input()
@@ -116,13 +161,62 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   private currentIndex = -1;
   private sources: Source[] = [];
 
-  constructor(
-    public sourceFactory: SourceFactory,
-    private avatarService: AvatarService
-  ) {}
+  // Modern Angular 17 dependency injection
+  public sourceFactory = inject(SourceFactory);
+  private avatarService = inject(AvatarService);
+  private cdr = inject(ChangeDetectorRef);
 
   public onAvatarClicked(): void {
-    this.clickOnAvatar.emit(this.sources[this.currentIndex]);
+    if (this.clickable) {
+      this.clickOnAvatar.emit(this.sources[this.currentIndex]);
+    }
+  }
+
+  public onKeyDown(event: KeyboardEvent): void {
+    if (this.clickable && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      this.onAvatarClicked();
+    }
+  }
+
+  /**
+   * Generate accessible alt text for avatar images
+   */
+  public getAltText(): string {
+    if (this.alt) {
+      return this.alt;
+    }
+
+    if (this.initials) {
+      return `Avatar for ${this.initials}`;
+    }
+
+    if (this.value) {
+      return `Avatar displaying ${this.value}`;
+    }
+
+    // Determine source type for better description
+    const currentSource = this.sources[this.currentIndex];
+    if (currentSource?.sourceType) {
+      return `Avatar from ${currentSource.sourceType}`;
+    }
+
+    return 'User avatar';
+  }
+
+  /**
+   * Generate ARIA label for accessibility
+   */
+  public getAriaLabel(): string {
+    if (this.ariaLabel) {
+      return this.ariaLabel;
+    }
+
+    if (this.clickable) {
+      return `${this.getAltText()}, clickable`;
+    }
+
+    return this.getAltText();
   }
 
   /**
@@ -168,6 +262,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
     if (this.avatarService.isTextAvatar(source.sourceType)) {
       this.buildTextAvatar(source);
       this.avatarSrc = null;
+      this.cdr.markForCheck();
     } else {
       this.buildImageAvatar(source);
     }
@@ -220,6 +315,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
       this.fetchAndProcessAsyncAvatar(avatarSource);
     } else {
       this.avatarSrc = avatarSource.getAvatar(+this.size);
+      this.cdr.markForCheck();
     }
   }
 
@@ -281,8 +377,11 @@ export class AvatarComponent implements OnChanges, OnDestroy {
             map(response => source.processResponse(response, +this.size)),
         )
         .subscribe({
-            next: avatarSrc => (this.avatarSrc = avatarSrc),
-            error: err => {
+            next: avatarSrc => {
+              this.avatarSrc = avatarSrc;
+              this.cdr.markForCheck();
+            },
+            error: _err => {
               this.fetchAvatarSource();
             },
           }
