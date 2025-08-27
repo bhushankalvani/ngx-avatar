@@ -50,7 +50,7 @@ describe('AvatarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [AvatarComponent],
+      imports: [AvatarComponent],
       providers: [
         SourceFactory,
         { provide: AvatarService, useClass: AvatarServiceMock }
@@ -116,5 +116,5 @@ describe('AvatarComponent', () => {
     expect(avatarImgEl.nativeElement.src).toBe('https://mocked.url/foo.jpg&s=50');
   });
 
-  describe('AvatarImage', () => {});
+  // TODO: Add AvatarImage tests
 });

@@ -5,8 +5,12 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  inject
 } from '@angular/core';
+import { NgStyle } from '@angular/common';
 
 import { Source } from './sources/source';
 import { AsyncSource } from './sources/async-source';
@@ -27,8 +31,10 @@ type Style = Partial<CSSStyleDeclaration>;
  */
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'ngx-avatar',
+  standalone: true,
+  imports: [NgStyle],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       :host {
@@ -42,21 +48,21 @@ type Style = Partial<CSSStyleDeclaration>;
       class="avatar-container"
       [ngStyle]="hostStyle"
     >
-      <img
-        *ngIf="avatarSrc; else textAvatar"
-        [src]="avatarSrc"
-        [width]="size"
-        [height]="size"
-        [ngStyle]="avatarStyle"
-        (error)="fetchAvatarSource()"
-        class="avatar-content"
-        loading="lazy"
-      />
-      <ng-template #textAvatar>
-        <div *ngIf="avatarText" class="avatar-content" [ngStyle]="avatarStyle">
+      @if (avatarSrc) {
+        <img
+          [src]="avatarSrc"
+          [width]="size"
+          [height]="size"
+          [ngStyle]="avatarStyle"
+          (error)="fetchAvatarSource()"
+          class="avatar-content"
+          loading="lazy"
+        />
+      } @else if (avatarText) {
+        <div class="avatar-content" [ngStyle]="avatarStyle">
           {{ avatarText }}
         </div>
-      </ng-template>
+      }
     </div>
   `
 })
@@ -116,10 +122,10 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   private currentIndex = -1;
   private sources: Source[] = [];
 
-  constructor(
-    public sourceFactory: SourceFactory,
-    private avatarService: AvatarService
-  ) {}
+  // Modern Angular 17 dependency injection
+  public sourceFactory = inject(SourceFactory);
+  private avatarService = inject(AvatarService);
+  private cdr = inject(ChangeDetectorRef);
 
   public onAvatarClicked(): void {
     this.clickOnAvatar.emit(this.sources[this.currentIndex]);
@@ -168,6 +174,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
     if (this.avatarService.isTextAvatar(source.sourceType)) {
       this.buildTextAvatar(source);
       this.avatarSrc = null;
+      this.cdr.markForCheck();
     } else {
       this.buildImageAvatar(source);
     }
@@ -220,6 +227,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
       this.fetchAndProcessAsyncAvatar(avatarSource);
     } else {
       this.avatarSrc = avatarSource.getAvatar(+this.size);
+      this.cdr.markForCheck();
     }
   }
 
@@ -281,8 +289,11 @@ export class AvatarComponent implements OnChanges, OnDestroy {
             map(response => source.processResponse(response, +this.size)),
         )
         .subscribe({
-            next: avatarSrc => (this.avatarSrc = avatarSrc),
-            error: err => {
+            next: avatarSrc => {
+              this.avatarSrc = avatarSrc;
+              this.cdr.markForCheck();
+            },
+            error: _err => {
               this.fetchAvatarSource();
             },
           }

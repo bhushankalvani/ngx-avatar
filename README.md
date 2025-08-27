@@ -7,7 +7,7 @@
 
 A universal avatar component for Angular applications that fetches and generates avatars based on user information. Features a robust fallback system that automatically tries alternative sources when the primary source fails.
 
-**Angular 17 Ready**: Built with modern Angular features including standalone components, improved performance, and ESLint integration.
+**Angular 17 Ready**: Built with modern Angular features including the new application builder, improved performance, and ESLint integration.
 
 ## Features
 
@@ -21,7 +21,6 @@ A universal avatar component for Angular applications that fetches and generates
 
 ![Angular Avatar component preview](https://github.com/bhushankalvani/ngx-avatar/blob/main/demo.png)
 
-*Original package created by [Haithem Mosbahi](mailto:haithem.mosbahi@gmail.com)*
 
 
 ### Supported Avatar Sources
@@ -42,9 +41,8 @@ The component supports multiple avatar sources with automatic fallback:
 
 ### Demo and Resources
 
-- [Live Demo](https://ngx-avatar-demo.stackblitz.io/)
-- [Interactive Playground](https://stackblitz.com/edit/ngx-avatar-demo)
-- [Tutorial Article](https://medium.com/letsboot/lets-play-with-ngx-avatar-ec585dc39161)
+- Live Demo: Coming soon for Angular 17 version
+- Interactive Playground: Coming soon for Angular 17 version
 
 ## Installation
 
@@ -105,26 +103,24 @@ export class ExampleComponent { }
 <ngx-avatar twitterId="1508319875"></ngx-avatar>
 <ngx-avatar instagramId="dccomics" size="70"></ngx-avatar>
 <ngx-avatar skypeId="1508319875"></ngx-avatar>
-<ngx-avatar gravatarId="adde9b2b981a8083cf084c63ad86f753"></ngx-avatar>
+<ngx-avatar gravatarId="fd05dbe73d9aef2e2ae8910f08c512"></ngx-avatar>
 <ngx-avatar gravatarId="user@gmail.com"></ngx-avatar>
 <ngx-avatar src="assets/avatar.jpg"></ngx-avatar>
 <ngx-avatar name="John Doe"></ngx-avatar>
 <ngx-avatar value="75%"></ngx-avatar>
 
 <ngx-avatar facebookId="userFacebookID" skypeId="userSkypeID"
- googleId="google" name="Haithem Mosbahi" src="assets/avatar.jpg"
+ googleId="google" name="Bhushan Kalvani" src="assets/avatar.jpg"
  value="28%"  twitterId="twitter"
- gravatarId="adde9b2b981a8083cf084c63ad86f753" 
+ gravatarId="fd05dbe73d9aef2e2ae8910f08c512" 
  size="100" [round]="true">
 </ngx-avatar>
 
 ```
-Check out this [file](https://github.com/HaithemMosbahi/ngx-avatar/blob/master/demo/src/app/app.component.html) for more examples on how to use ngx-avatar-2 in your application.
+Check out the demo folder in this repository for more examples on how to use ngx-avatar-2 in your application.
 
 ## Demo
-Check out this [link](https://ngx-avatar-demo.stackblitz.io/) for a live demo.
-Also, you can play with ngx-avatar-2 using an online editor [here](https://stackblitz.com/edit/ngx-avatar-demo) on stackblitz.
-Please note this uses the old package ngx-avatar. New demos coming soon.
+Live demo and interactive playground coming soon for the Angular 17 version.
 
 Moreover, the demo folder contains an application generated with angular cli that uses ngx-avatar component.
 
@@ -291,7 +287,7 @@ The component provides CSS classes for custom styling:
 ```
 
 ## Release Notes & History
-* 5.0.0: Angular 17 support with standalone component option, ESLint migration, optional ts-md5 dependency, and performance improvements
+* 5.0.0: Angular 17 support with standalone component option, new application builder, ESLint migration, optional ts-md5 dependency, modern tooling, and performance improvements
 * 4.2.3: Angular 16.0.0 set as base version for compatibility to any Angular 16 projects. 
 * 4.2.2: Angular 16 support **breaking changes (ivy compiler becomes default)**
 * 4.1.9: Angular 15 support
@@ -377,5 +373,7 @@ This project was built with [Angular CLI](https://github.com/angular/angular-cli
 
 ## License
 
-MIT © [Haithem Mosbahi](mailto:haithem.mosbahi@gmail.com)
-Updated to Angular 17 and will now be maintained by [Bhushan Kalvani](mailto:contact@galekt.com)
+MIT License
+maintained by [Bhushan Kalvani](mailto:contact@galekt.com)
+
+**Note**: This package was forked from the original ngx-avatar by Haithem Mosbahi and has been maintained completely separately since Angular 15. From the Angular 17 upgrade onwards, it is totally independent with its own development path and improvements.
