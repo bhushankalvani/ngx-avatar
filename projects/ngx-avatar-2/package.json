@@ -1,7 +1,7 @@
 {
   "name": "ngx-avatar-2",
   "description": "A universal avatar component for Angular applications that fetches / generates avatar based on the information you have about the user.",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "keywords": [
     "angular",
     "avatar",
@@ -21,7 +21,7 @@
     "ts-md5": "^1.2.7"
   },
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0"
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0"
   }
 }

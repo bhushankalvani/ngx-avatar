@@ -1,6 +1,6 @@
 The MIT License
 
-Copyright (c) 2023 Bhushan Kalvani, ngx-avatar-2 and 2017 Haithem Mosbahi, ngx-avatar
+Copyright (c) 2023 onwards Bhushan Kalvani, ngx-avatar-2
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -11,6 +11,11 @@ furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
+
+**Note**: This package was forked from the original ngx-avatar by Haithem Mosbahi
+and has been maintained completely separately since Angular 15. 
+From the Angular 17 upgrade onwards, it is totally independent with its own 
+development path and improvements.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
