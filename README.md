@@ -1,13 +1,13 @@
 # ngx-avatar-2
 
 [![npm version](https://badge.fury.io/js/ngx-avatar-2.svg)](https://badge.fury.io/js/ngx-avatar-2)
-[![Angular](https://img.shields.io/badge/Angular-18%2B-red.svg)](https://angular.io/)
+[![Angular](https://img.shields.io/badge/Angular-19%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.2%2B-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A universal avatar component for Angular applications that fetches and generates avatars based on user information. Features a robust fallback system that automatically tries alternative sources when the primary source fails.
 
-**Angular 18 Ready**: Built with modern Angular features including the new application builder, improved performance, and ESLint integration.
+**Angular 19 Ready**: Built with modern Angular features including the new application builder, improved performance, and ESLint integration.
 
 ## Features
 
@@ -15,7 +15,7 @@ A universal avatar component for Angular applications that fetches and generates
 - **Smart Fallback System**: Automatically tries alternative sources if the primary source fails
 - **Text-Based Avatars**: Generate initials from names or display custom values
 - **Highly Customizable**: Control colors, sizes, shapes, and styling
-- **Angular 18 Support**: Built with standalone components, OnPush change detection, and modern control flow syntax
+- **Angular 19 Support**: Built with standalone components, OnPush change detection, and modern control flow syntax
 - **TypeScript**: Full type safety and excellent IntelliSense support
 - **Performance Optimized**: Efficient change detection and lazy loading
 
@@ -40,8 +40,8 @@ The component supports multiple avatar sources with automatic fallback:
 
 ### Demo and Resources
 
-- Live Demo: Coming soon for Angular 18 version
-- Interactive Playground: Coming soon for Angular 18 version
+- Live Demo: Coming soon for Angular 19 version
+- Interactive Playground: Coming soon for Angular 19 version
 
 ## Installation
 
@@ -53,10 +53,12 @@ npm install ngx-avatar-2
 
 | ngx-avatar-2 | Angular | Node.js | TypeScript |
 |-------------|---------|---------|------------|
-| 5.x         | 17.x    | >=18.13 | >=5.2      |
+| 5.2.x       | 19.x    | ^18.19.1 || ^20.11.1 || ^22.0.0 | ~5.6       |
+| 5.1.x       | 18.x    | ^18.19.1 || ^20.11.1 || ^22.0.0 | ~5.4       |
+| 5.0.x       | 17.x    | >=18.13 | ~5.2       |
 | 4.x         | 16.x    | >=16.0  | >=4.9      |
 
-For Angular 16 support, use version 4.x. For Angular 17, use version 5.0.x. For Angular 18+, use version 5.1.x.
+For Angular 16 support, use version 4.x. For Angular 17, use version 5.0.x. For Angular 18, use version 5.1.x. For Angular 19+, use version 5.2.x.
 
 ## Usage
 
@@ -76,7 +78,7 @@ import { AvatarModule } from 'ngx-avatar-2';
 export class AppModule { }
 ```
 
-### Standalone Component (Angular 18+)
+### Standalone Component (Angular 19+)
 
 ```typescript
 import { Component } from '@angular/core';
@@ -95,7 +97,7 @@ export class ExampleComponent { }
 
 For external avatar sources (Gravatar, Google, etc.), you need to provide HttpClient:
 
-**Angular 18+ (Recommended):**
+**Angular 19+ (Recommended):**
 ```typescript
 // main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
@@ -149,7 +151,7 @@ export class AppModule { }
 Check out the demo folder in this repository for more examples on how to use ngx-avatar-2 in your application.
 
 ## Demo
-Live demo and interactive playground coming soon for the Angular 18 version.
+Live demo and interactive playground coming soon for the Angular 19 version.
 
 Moreover, the demo folder contains an application generated with angular cli that uses ngx-avatar component.
 
@@ -324,6 +326,7 @@ The component provides CSS classes for custom styling:
 ```
 
 ## Release Notes & History
+* 5.2.0: Angular 19 support (requires Angular 19+). For Angular 18, use version 5.1.x
 * 5.1.0: Angular 18 support (requires Angular 18+). For Angular 17, use version 5.0.x
 * 5.0.0: Angular 17 support with standalone components, OnPush change detection, modern control flow syntax (@if/@else), new application builder, ESLint migration, optional ts-md5 dependency, performance improvements, removed support for deprecated platforms (Skype), and marked Twitter source as deprecated due to X/Twitter API changes
 * 4.2.3: Angular 16.0.0 set as base version for compatibility to any Angular 16 projects. 
@@ -407,7 +410,7 @@ ng test ngx-avatar-2
 ng generate component component-name
 ```
 
-This project was built with [Angular CLI](https://github.com/angular/angular-cli) and upgraded to Angular 18.
+This project was built with [Angular CLI](https://github.com/angular/angular-cli) and upgraded to Angular 19.
 
 ## License
 
