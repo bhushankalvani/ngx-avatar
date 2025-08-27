@@ -15,7 +15,7 @@ A universal avatar component for Angular applications that fetches and generates
 - **Smart Fallback System**: Automatically tries alternative sources if the primary source fails
 - **Text-Based Avatars**: Generate initials from names or display custom values
 - **Highly Customizable**: Control colors, sizes, shapes, and styling
-- **Angular 17 Support**: Built with modern Angular features and standalone components
+- **Angular 17 Support**: Built with standalone components, OnPush change detection, and modern control flow syntax
 - **TypeScript**: Full type safety and excellent IntelliSense support
 - **Performance Optimized**: Efficient change detection and lazy loading
 
@@ -156,6 +156,15 @@ ng serve
 | `borderColor` | *string*         | undefined | Add border with the given color. boder's default style is '1px solid borderColor'                    |
 | `style`       | *object*         |         | Style that will be applied on the root element                                                         |
 
+### Accessibility Inputs
+
+| Attribute | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `alt` | *string* | auto-generated | Custom alt text for avatar images |
+| `ariaLabel` | *string* | auto-generated | Custom ARIA label for screen readers |
+| `role` | *string* | 'img' | ARIA role attribute |
+| `clickable` | *boolean* | false | Makes avatar focusable and enables keyboard navigation |
+
 ### Output Events
 
 | Event | Type | Description |
@@ -287,7 +296,7 @@ The component provides CSS classes for custom styling:
 ```
 
 ## Release Notes & History
-* 5.0.0: Angular 17 support with standalone component option, new application builder, ESLint migration, optional ts-md5 dependency, modern tooling, and performance improvements
+* 5.0.0: Angular 17 support with standalone components, OnPush change detection, modern control flow syntax (@if/@else), new application builder, ESLint migration, optional ts-md5 dependency, and performance improvements
 * 4.2.3: Angular 16.0.0 set as base version for compatibility to any Angular 16 projects. 
 * 4.2.2: Angular 16 support **breaking changes (ivy compiler becomes default)**
 * 4.1.9: Angular 15 support
