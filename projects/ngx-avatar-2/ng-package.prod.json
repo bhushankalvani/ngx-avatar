@@ -3,8 +3,5 @@
   "dest": "../../dist/ngx-avatar-2",
   "lib": {
     "entryFile": "src/public_api.ts"
-  },
-  "allowedNonPeerDependencies": [
-    "ts-md5"
-  ]
+  }
 }

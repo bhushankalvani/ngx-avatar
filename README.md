@@ -1,87 +1,102 @@
-## ngx-avatar-2 &lt;ngx-avatar&gt;
+# ngx-avatar-2
 
-A universal avatar component for Angular applications that fetches / generates avatar based on the information you have about the user. The component has a fallback system that if for example an invalid Facebook ID is used it will try google ID and so on.
+[![npm version](https://badge.fury.io/js/ngx-avatar-2.svg)](https://badge.fury.io/js/ngx-avatar-2)
+[![Angular](https://img.shields.io/badge/Angular-17%2B-red.svg)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.2%2B-blue.svg)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The original package is built by [Haithem Mosbahi](mailto:haithem.mosbahi@gmail.com)
-Original package links, [npm](https://www.npmjs.com/package/ngx-avatar) and [GitHub](https://github.com/HaithemMosbahi/ngx-avatar)
+A universal avatar component for Angular applications that fetches and generates avatars based on user information. Features a robust fallback system that automatically tries alternative sources when the primary source fails.
 
-You can use this component whether you have a single source or a multiple avatar sources. In this case the fallback system will fetch the first valid avatar.
+**Angular 17 Ready**: Built with modern Angular features including standalone components, improved performance, and ESLint integration.
 
-Moreover, the component can shows name initials or simple value as avatar.
+## Features
+
+- **Multiple Avatar Sources**: Facebook, Google, Twitter, Instagram, GitHub, Gravatar, and more
+- **Smart Fallback System**: Automatically tries alternative sources if the primary source fails
+- **Text-Based Avatars**: Generate initials from names or display custom values
+- **Highly Customizable**: Control colors, sizes, shapes, and styling
+- **Angular 17 Support**: Built with modern Angular features and standalone components
+- **TypeScript**: Full type safety and excellent IntelliSense support
+- **Performance Optimized**: Efficient change detection and lazy loading
 
 ![Angular Avatar component preview](https://github.com/bhushankalvani/ngx-avatar/blob/main/demo.png)
 
+*Original package created by [Haithem Mosbahi](mailto:haithem.mosbahi@gmail.com)*
 
- Supported avatar sources:
 
- * Facebook
- * Google
- * Twitter
- * Instagram
- * Vkontakte (VK)
- * Skype
- * Gravatar
- * GitHub
- * Custom image
- * name initials
- * value
+### Supported Avatar Sources
 
- The fallback system uses the same order as the above source list, Facebook has the highest priority, if it fails, google source will be used, and so on.
+The component supports multiple avatar sources with automatic fallback:
 
- If you enjoy watching videos, check out this [tutorial](https://medium.com/letsboot/lets-play-with-ngx-avatar-ec585dc39161) on medium which explains how to use ngx-avatar in your angular application.
- 
- Check out this [link](https://stackblitz.com/edit/ngx-avatar-demo) to play with ngx-avatar :grinning:
+1. **Facebook** (highest priority)
+2. **Google**
+3. **Twitter**
+4. **Instagram**
+5. **Vkontakte (VK)**
+6. **Skype**
+7. **Gravatar**
+8. **GitHub**
+9. **Custom image**
+10. **Name initials**
+11. **Custom value**
+
+### Demo and Resources
+
+- [Live Demo](https://ngx-avatar-demo.stackblitz.io/)
+- [Interactive Playground](https://stackblitz.com/edit/ngx-avatar-demo)
+- [Tutorial Article](https://medium.com/letsboot/lets-play-with-ngx-avatar-ec585dc39161)
 
 ## Installation
 
-Install avatar component using [npmjs](https://npmjs.com/):
-
 ```bash
-$ npm install ngx-avatar-2 --save
+npm install ngx-avatar-2
 ```
+
+## Compatibility
+
+| ngx-avatar-2 | Angular | Node.js | TypeScript |
+|-------------|---------|---------|------------|
+| 5.x         | 17.x    | >=18.13 | >=5.2      |
+| 4.x         | 16.x    | >=16.0  | >=4.9      |
+
+For Angular 16 support, use version 4.x. For Angular 17+, use version 5.x.
 
 ## Usage
 
-1. Import AvatarModule:
-
-Once you have installed ngx-avatar-2, you can import it in your `AppModule`:
+### Module Import
 
 ```typescript
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
-import { AppComponent } from './app.component';
-
-// Import your AvatarModule
 import { AvatarModule } from 'ngx-avatar-2';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    // Specify AvatarModule as an import
+    HttpClientModule, // Required for external avatar sources
     AvatarModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  ]
 })
 export class AppModule { }
 ```
 
-Starting from version 3.4.0:
-- `HttpClientModule` is mandatory in order to fetch the avatar from external sources (Gravatar, Google, ...).
+### Standalone Component (Angular 17+)
 
-2. Start using it:
+```typescript
+import { Component } from '@angular/core';
+import { AvatarComponent } from 'ngx-avatar-2';
 
-Once the AvatarModule is imported, you can start using the component in your Angular application:
-
-```html
-<ngx-avatar></ngx-avatar>
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [AvatarComponent],
+  template: '<ngx-avatar name="John Doe"></ngx-avatar>'
+})
+export class ExampleComponent { }
 ```
+
+> **Note**: `HttpClientModule` is required for external avatar sources (Gravatar, Google, etc.).
+> 
+> **Optional**: For better Gravatar hash support, install `ts-md5`: `npm install ts-md5`. The component works without it using a fallback hash function.
 ## Examples
 
 ```html
@@ -113,13 +128,14 @@ Please note this uses the old package ngx-avatar. New demos coming soon.
 
 Moreover, the demo folder contains an application generated with angular cli that uses ngx-avatar component.
 
-To run the demo application :
+To run the demo application:
+
 ```bash
-$ yarn install
-$ ng serve
+npm install
+ng serve
 ```
 
-## Options
+## API Reference\n\n### Component Inputs
 
 |   Attribute   |      Type        | Default |                                              Description                                               |
 | ------------- | ---------------- | ------- | ------------------------------------------------------------------------------------------------------ |
@@ -143,24 +159,28 @@ $ ng serve
 | `cornerRadius`| *number*         | 0       | Square avatars can have rounded corners using this property                                            |
 | `borderColor` | *string*         | undefined | Add border with the given color. boder's default style is '1px solid borderColor'                    |
 | `style`       | *object*         |         | Style that will be applied on the root element                                                         |
-| `clickOnAvatar`| *Output*        |         | Fired when the avatar is clicked. The component emits the source object that has been used to fetch the avatar.|
 
- The source object has the following properties:
- * sourceType : avatar source ( Facebook, twitter, etc)
- * sourceId : identifier of the user
- * getAvatar(size) : method to fetch user avatar from the current source
+### Output Events
 
-## Override Avatar Configuration
-The avatar module provides the possibility of customizing the avatar component by overriding some of its options. For example, the avatar module comes with a set of default colors used to randomly fill the background color of the avatar. Thus, it's possible to change the default list of colors and to pass your own list.
+| Event | Type | Description |
+|-------|------|-------------|
+| `clickOnAvatar` | `Source` | Fired when avatar is clicked, emits the source object |
 
-All you need to do is to configure the AvatarModule by calling **forRoot** method. The forRoot method takes an AvatarConfig Object that contains the overridden options. 
+The source object contains:
+- `sourceType`: Avatar source (Facebook, Twitter, etc.)
+- `sourceId`: User identifier  
+- `getAvatar(size)`: Method to fetch avatar from current source
 
-AvatarConfig interface has two properties: 
-  * **avatarColors:** allows the user to override the default avatar colors by providing a new set of colors
-  * **sourcePriorityOrder:** allows the user to change the avatar source priority order. If you want the avatar component to look for user initials first, twitter before facebook or any order you want, this is can be done using the sourcePriorityOrder property
+## Configuration
 
-The following code shows an example on how to import the AvatarModule with your own source priority order. 
-With the given order, the avatar component will look first for the custom avatar image and then for user initials and after that it will look the rest of sources.
+### Custom Colors and Source Priority
+
+The AvatarModule can be configured using the `forRoot()` method to customize default behaviors:
+
+- **avatarColors**: Override default colors for text-based avatars
+- **sourcePriorityOrder**: Change the order of avatar source fallbacks
+
+### Custom Source Priority Order
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -191,9 +211,7 @@ export class AppModule { }
 
 ```
 
-Here's an example on how to import the AvatarModule with your own set of colors.
-
-* Starting from version 3.1, overriding the avatar configuration can be done as follows:
+### Custom Avatar Colors
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -224,7 +242,7 @@ export class AppModule { }
 
 ```
 
-* Users who use a prior version of ngx-avatar-2 ( < 3.1 ) can override the configuration as follows:
+### Legacy Configuration (< v3.1)
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -253,26 +271,27 @@ export class AppModule { }
 
 ```
 
- **Avatar Styling**
+## Styling
 
- In addition to the style attribute, ngx-avatar style can be customized using css classes. Thus, the generated code offers two css classes that can be overridden :
- * **avatar-container** : class that represents the avatar container - the host element. Styles in this class will be applied on the avatar whether is an image or text.
- * **avatar-content** : css class that represents the avatar element which is embedded inside the avatar-container.
- 
- To overcome Angular's view encapsulation, you may need to use the /deep/ operator to target it. Here's an example that shows how to override ngx-avatar style : 
- 
- ```html
-   <ngx-avatar class="my-avatar" value="HM"> </ngx-avatar>
- ```
- Your css file might look like this 
- 
- ```css
- .my-avatar /deep/ .avatar-content {
-     background-color : red !important;
- }
- ```
+The component provides CSS classes for custom styling:
+
+- **`.avatar-container`**: The host element (applied to all avatar types)
+- **`.avatar-content`**: The inner avatar element
+
+### Custom CSS Example
+
+```html
+<ngx-avatar class="my-avatar" value="HM"></ngx-avatar>
+```
+
+```css
+.my-avatar ::ng-deep .avatar-content {
+    background-color: red !important;
+}
+```
 
 ## Release Notes & History
+* 5.0.0: Angular 17 support with standalone component option, ESLint migration, optional ts-md5 dependency, and performance improvements
 * 4.2.3: Angular 16.0.0 set as base version for compatibility to any Angular 16 projects. 
 * 4.2.2: Angular 16 support **breaking changes (ivy compiler becomes default)**
 * 4.1.9: Angular 15 support
@@ -309,44 +328,54 @@ export class AppModule { }
 
 ## Contributing
 
-Contributions and all possible collaboration are welcome.
+Contributions are welcome! Please follow these steps:
 
-* Fork it!
-* Create your feature branch: git checkout -b my-new-feature
-* Commit your changes: git commit -am 'Add some feature'
-* Push to the branch: git push origin my-new-feature
-* Submit a pull request :D
+1. Fork the repository
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request
 
 
-# Testing
+## Development
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
+### Development Server
 
-## Development server
+```bash
+ng serve
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Navigate to `http://localhost:4200/`. The app will automatically reload when you change source files.
 
-## Code scaffolding
+### Building
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+# Build demo application  
+ng build
 
-## Build
+# Build library
+ng build ngx-avatar-2
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Testing
 
-## Running unit tests
+```bash
+# Run unit tests
+ng test
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Run library tests
+ng test ngx-avatar-2
+```
 
-## Running end-to-end tests
+### Code Generation
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```bash
+ng generate component component-name
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This project was built with [Angular CLI](https://github.com/angular/angular-cli) and upgraded to Angular 17.
 
 ## License
 
 MIT © [Haithem Mosbahi](mailto:haithem.mosbahi@gmail.com)
-Updated to Angular 16 and will now be maintained by [Bhushan Kalvani](mailto:bhushankalvani@gmail.com)
+Updated to Angular 17 and will now be maintained by [Bhushan Kalvani](mailto:contact@galekt.com)
