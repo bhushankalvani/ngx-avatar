@@ -11,7 +11,7 @@ A universal avatar component for Angular applications that fetches and generates
 
 ## Features
 
-- **Multiple Avatar Sources**: Facebook, Google, Twitter, Instagram, GitHub, Gravatar, and more
+- **Multiple Avatar Sources**: Facebook, Google, Twitter, Instagram, VKontakte, GitHub, Gravatar, and more
 - **Smart Fallback System**: Automatically tries alternative sources if the primary source fails
 - **Text-Based Avatars**: Generate initials from names or display custom values
 - **Highly Customizable**: Control colors, sizes, shapes, and styling
@@ -29,15 +29,14 @@ The component supports multiple avatar sources with automatic fallback:
 
 1. **Facebook** (highest priority)
 2. **Google**
-3. **Twitter**
+3. **Twitter** ⚠️ *Deprecated - may not work reliably*
 4. **Instagram**
 5. **Vkontakte (VK)**
-6. **Skype**
-7. **Gravatar**
-8. **GitHub**
-9. **Custom image**
-10. **Name initials**
-11. **Custom value**
+6. **Gravatar**
+7. **GitHub**
+8. **Custom image**
+9. **Name initials**
+10. **Custom value**
 
 ### Demo and Resources
 
@@ -92,26 +91,56 @@ import { AvatarComponent } from 'ngx-avatar-2';
 export class ExampleComponent { }
 ```
 
-> **Note**: `HttpClientModule` is required for external avatar sources (Gravatar, Google, etc.).
-> 
+### HTTP Client Setup
+
+For external avatar sources (Gravatar, Google, etc.), you need to provide HttpClient:
+
+**Angular 17+ (Recommended):**
+```typescript
+// main.ts
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideHttpClient(),
+    // other providers...
+  ]
+});
+```
+
+**Traditional NgModule:**
+```typescript
+// app.module.ts
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  imports: [
+    HttpClientModule, // Required for external avatar sources
+    AvatarModule
+  ]
+})
+export class AppModule { }
+```
+
 > **Optional**: For better Gravatar hash support, install `ts-md5`: `npm install ts-md5`. The component works without it using a fallback hash function.
 ## Examples
 
 ```html
 <ngx-avatar facebookId="1508319875"></ngx-avatar>
 <ngx-avatar googleId="1508319875"></ngx-avatar>
-<ngx-avatar twitterId="1508319875"></ngx-avatar>
+<ngx-avatar twitterId="1508319875"></ngx-avatar> <!-- ⚠️ Twitter may not work reliably -->
 <ngx-avatar instagramId="dccomics" size="70"></ngx-avatar>
-<ngx-avatar skypeId="1508319875"></ngx-avatar>
 <ngx-avatar gravatarId="fd05dbe73d9aef2e2ae8910f08c512"></ngx-avatar>
 <ngx-avatar gravatarId="user@gmail.com"></ngx-avatar>
 <ngx-avatar src="assets/avatar.jpg"></ngx-avatar>
 <ngx-avatar name="John Doe"></ngx-avatar>
 <ngx-avatar value="75%"></ngx-avatar>
 
-<ngx-avatar facebookId="userFacebookID" skypeId="userSkypeID"
+<ngx-avatar facebookId="userFacebookID" 
  googleId="google" name="Bhushan Kalvani" src="assets/avatar.jpg"
- value="28%"  twitterId="twitter"
+ value="28%"  twitterId="twitter" <!-- ⚠️ Twitter deprecated -->
  gravatarId="fd05dbe73d9aef2e2ae8910f08c512" 
  size="100" [round]="true">
 </ngx-avatar>
@@ -137,10 +166,9 @@ ng serve
 | ------------- | ---------------- | ------- | ------------------------------------------------------------------------------------------------------ |
 | `facebookId`  | *string \| null* |         | Facebook ID                                                                                            |
 | `googleId`    | *string \| null* |         |  Google ID                                                                                             |
-| `twitterId`   | *string \| null* |         | Twitter Handle                                                                                         |
+| `twitterId`   | *string \| null* |         | Twitter Handle ⚠️ **Deprecated: May not work reliably due to X/Twitter API changes**                  |
 | `instagramId`   | *string \| null* |         | Instagram Handle                                                                                         |
 | `vkontakteId` | *string \| null* |         | VK ID                                                                                                  |
-| `skypeId`     | *string \| null* |         |  Skype ID                                                                                              |
 | `gravatarId`  | *string \| null* |         | email or md5 email related to gravatar                                                                 |
 | `githubId`    | *string \| null* |         | Github ID                                                                                              |
 | `src`         | *string \| null* |         | Fallback image to use                                                                                  |
@@ -296,7 +324,7 @@ The component provides CSS classes for custom styling:
 ```
 
 ## Release Notes & History
-* 5.0.0: Angular 17 support with standalone components, OnPush change detection, modern control flow syntax (@if/@else), new application builder, ESLint migration, optional ts-md5 dependency, and performance improvements
+* 5.0.0: Angular 17 support with standalone components, OnPush change detection, modern control flow syntax (@if/@else), new application builder, ESLint migration, optional ts-md5 dependency, performance improvements, removed support for deprecated platforms (Skype), and marked Twitter source as deprecated due to X/Twitter API changes
 * 4.2.3: Angular 16.0.0 set as base version for compatibility to any Angular 16 projects. 
 * 4.2.2: Angular 16 support **breaking changes (ivy compiler becomes default)**
 * 4.1.9: Angular 15 support

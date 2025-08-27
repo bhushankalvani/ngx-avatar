@@ -3,8 +3,11 @@ import { AvatarSource } from './avatar-source.enum';
 
 /**
  *  Twitter source implementation.
- *  Fetch avatar source based on google identifier
+ *  Fetch avatar source based on twitter identifier
  *  and image size
+ *  
+ *  @deprecated Twitter/X has changed their API and this source may not work reliably.
+ *  Consider using other avatar sources like Gravatar or GitHub instead.
  */
 export class Twitter implements Source {
   readonly sourceType: AvatarSource = AvatarSource.TWITTER;

@@ -131,9 +131,6 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   @Input('vkontakteId')
   public vkontakte?: string | null;
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('skypeId')
-  public skype?: string | null;
-  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('gravatarId')
   public gravatar?: string | null;
   // eslint-disable-next-line @angular-eslint/no-input-rename
